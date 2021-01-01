@@ -1,0 +1,2 @@
+# OpenNews
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4fb144cd6b8346dc9dbac08f7c74e95c)](https://app.codacy.com/gh/bibutikoley/OpenNews?utm_source=github.com&utm_medium=referral&utm_content=bibutikoley/OpenNews&utm_campaign=Badge_Grade_Settings)
