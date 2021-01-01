@@ -9,5 +9,4 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/bibutikoley/OpenNews)
 ![GitHub contributors](https://img.shields.io/github/contributors/bibutikoley/OpenNews)
 
-
 Licensed under the [MIT License](LICENSE)
