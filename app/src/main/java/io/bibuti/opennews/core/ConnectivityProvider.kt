@@ -51,12 +51,12 @@ object ConnectivityProvider : ConnectivityManager.NetworkCallback() {
          * Loop through all the available network interfaces and check if any one interface has active internet.
          */
         var isNetworkConnected = false
-        connectivityManager.allNetworks.forEach { network ->
+        connectivityManager.allNetworks.forEach loop@{ network ->
             val networkCapabilities = connectivityManager.getNetworkCapabilities(network)
             networkCapabilities?.let { networkCapability ->
                 if (networkCapability.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) {
                     isNetworkConnected = true
-                    return@forEach
+                    return@loop
                 }
             }
         }
