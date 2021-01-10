@@ -7,7 +7,9 @@
 ![Lines of code](https://img.shields.io/tokei/lines/github.com/bibutikoley/OpenNews)
 ![GitHub repo size](https://img.shields.io/github/repo-size/bibutikoley/OpenNews)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/bibutikoley/OpenNews)
+[![GitHub issues](https://img.shields.io/github/issues/bibutikoley/OpenNews)](https://github.com/bibutikoley/OpenNews/issues)
 ![GitHub last commit](https://img.shields.io/github/last-commit/bibutikoley/OpenNews)
 ![GitHub contributors](https://img.shields.io/github/contributors/bibutikoley/OpenNews)
+[![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fiambibuti)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fbibutikoley%2FOpenNews)
 
 Licensed under the [MIT License](LICENSE)
