@@ -12,7 +12,7 @@ interface NewsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveNews(news: List<SingleNewsItem>)
 
-    @Query("select * from news_table order by newsId asc")
+    @Query("select * from news_table order by publishedAt asc")
     fun fetchNews() : Flow<List<SingleNewsItem>>
 
 }
@@ -22,8 +22,8 @@ interface NewsDao {
  */
 @Entity(tableName = "news_table")
 data class SingleNewsItem(
-    @PrimaryKey(autoGenerate = true)
-    val newsId: Long = 0L,
+    @PrimaryKey(autoGenerate = false)
+    val newsUrl: String,
     val newsImageUrl: String,
     val newsTitle: String,
     val newsDescription: String,

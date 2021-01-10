@@ -2,16 +2,16 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "55c2926d0cb13cc1b3a6ac97c33ddc99",
+    "identityHash": "8b071b3bd3592aaf58ac5631f711c1d9",
     "entities": [
       {
         "tableName": "news_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`newsId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `newsImageUrl` TEXT NOT NULL, `newsTitle` TEXT NOT NULL, `newsDescription` TEXT NOT NULL, `newsContent` TEXT NOT NULL, `authorName` TEXT NOT NULL, `publishedAt` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`newsUrl` TEXT NOT NULL, `newsImageUrl` TEXT NOT NULL, `newsTitle` TEXT NOT NULL, `newsDescription` TEXT NOT NULL, `newsContent` TEXT NOT NULL, `authorName` TEXT NOT NULL, `publishedAt` TEXT NOT NULL, PRIMARY KEY(`newsUrl`))",
         "fields": [
           {
-            "fieldPath": "newsId",
-            "columnName": "newsId",
-            "affinity": "INTEGER",
+            "fieldPath": "newsUrl",
+            "columnName": "newsUrl",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -53,9 +53,9 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "newsId"
+            "newsUrl"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
@@ -64,7 +64,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '55c2926d0cb13cc1b3a6ac97c33ddc99')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8b071b3bd3592aaf58ac5631f711c1d9')"
     ]
   }
 }

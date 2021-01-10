@@ -24,6 +24,7 @@ class NewsRepository @Inject constructor(
                 val newsResponse = networkEndpoints.getNews()
                 val data = newsResponse.body()?.articles?.map {
                     SingleNewsItem(
+                        newsUrl = it?.url ?: "",
                         newsImageUrl = it?.urlToImage ?: "",
                         newsTitle = it?.title ?: "",
                         newsDescription = it?.description ?: "",
