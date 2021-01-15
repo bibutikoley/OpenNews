@@ -24,11 +24,8 @@ object Versions {
 }
 
 
-object Dependencies {
-    const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
+object Jetbrains {
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
-    const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-    const val daggerHiltGradle = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
 }
 
 object androidX {

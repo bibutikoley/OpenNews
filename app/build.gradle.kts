@@ -59,7 +59,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 
 dependencies {
 
-    implementation(Dependencies.kotlinStdLib)
+    implementation(Jetbrains.kotlinStdLib)
 
     implementation(androidX.coreKtx)
     implementation(androidX.appcompat)
