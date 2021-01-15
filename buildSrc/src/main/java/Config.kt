@@ -1,13 +1,9 @@
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-
 object Versions {
     //project level..
     const val kotlin = "1.4.21"
     const val gradle = "4.1.1"
 
     //app level..
-    const val hilt = "2.30.1-alpha"
     const val materialDesign = "1.2.1"
     const val coreKtx = "1.3.2"
     const val appCompact = "1.2.0"
@@ -80,17 +76,4 @@ object Room {
 
 object Glide {
     const val lib = "com.github.bumptech.glide:glide:${Versions.glide}"
-}
-
-object Hilt {
-    //dependency injection..
-    const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
-    const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
-
-    const val androidxHiltViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
-    const val androidxHiltCompiler = "androidx.hilt:hilt-compiler:1.0.0-alpha02"
-}
-
-object DateProducer {
-    fun getDate() = DateTimeFormatter.ofPattern("MMM-dd-yyyy").format(LocalDate.now()).toString()
 }

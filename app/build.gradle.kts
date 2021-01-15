@@ -1,9 +1,18 @@
+import java.io.FileInputStream
+import java.util.*
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
+
+val urlProperties = rootProject.file("Project.properties")
+val properties = Properties()
+properties.load(FileInputStream(urlProperties))
 
 android {
     compileSdkVersion(30)
@@ -13,8 +22,8 @@ android {
         applicationId = "io.bibuti.opennews"
         minSdkVersion(21)
         targetSdkVersion(30)
-        versionCode = 1
-        versionName = "1.0"
+        versionCode(1)
+        versionName("1.0")
         setProperty("archivesBaseName", getArtifactName(artifact = this))
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -39,6 +48,16 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+    }
+
+    flavorDimensions("default")
+    productFlavors {
+        create("staging") {
+            buildConfigField("String", "BASE_URL", properties["STAGING_BASE_URL"].toString())
+        }
+        create("production") {
+            buildConfigField("String", "BASE_URL", properties["PRODUCTION_BASE_URL"].toString())
         }
     }
 
@@ -98,10 +117,10 @@ dependencies {
     implementation(Glide.lib)
 
     //dependency injection..
-    implementation(Hilt.hiltAndroid)
-    kapt(Hilt.hiltCompiler)
-    implementation(Hilt.androidxHiltViewModel)
-    kapt(Hilt.androidxHiltCompiler)
+    implementation("com.google.dagger:hilt-android:2.30.1-alpha")
+    kapt("com.google.dagger:hilt-android-compiler:2.30.1-alpha")
+    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02")
+    kapt("androidx.hilt:hilt-compiler:1.0.0-alpha02")
 
 
     //testing..
@@ -112,6 +131,6 @@ dependencies {
 }
 
 fun getArtifactName(artifact: com.android.build.gradle.internal.dsl.DefaultConfig): String {
-    val date = DateProducer.getDate()
-    return project.name + "-v" + "(" + artifact.versionName + ")" + "-code"+ "(" + artifact.versionCode + ")" + "-" + date
+    val date = DateTimeFormatter.ofPattern("MMM-dd-yyyy").format(LocalDate.now()).toString()
+    return project.name + "-v" + "(" + artifact.versionName + ")" + "-code" + "(" + artifact.versionCode + ")" + "-" + date
 }

@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.bibuti.opennews.BuildConfig
 import io.bibuti.opennews.data.db.AppDB
 import io.bibuti.opennews.network.NetworkEndpoints
 import io.bibuti.opennews.network.NetworkInterceptor
@@ -28,7 +29,7 @@ object AppModule {
     //Network..
     @Singleton
     @Provides
-    fun provideBaseUrl() = "https://newsapi.org/v2/"
+    fun provideBaseUrl() = BuildConfig.BASE_URL
 
     @Singleton
     @Provides
