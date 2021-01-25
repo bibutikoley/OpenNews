@@ -18,7 +18,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      */
     abstract fun setFragmentView(): Int
 
-    private lateinit var binding: T
+    lateinit var binding: T
 
     override fun onCreateView(
         inflater: LayoutInflater,

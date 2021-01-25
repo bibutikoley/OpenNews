@@ -22,6 +22,10 @@ class NewsListingViewModel @ViewModelInject constructor(
         MutableLiveData()
     }
 
+    init {
+        fetchNews()
+    }
+
     fun fetchNews() {
         viewModelScope.launch {
             newsRepository.getNews().collect { state ->

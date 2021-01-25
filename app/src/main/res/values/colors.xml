@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="shrine_pink_100">#F44345</color>
+    <color name="shrine_pink_light">#F44354</color>
+    <color name="shrine_pink_900">#F44326</color>
 </resources>

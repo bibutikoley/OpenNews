@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
  * This class supports the ViewState concepts.
  * Extend VM from this class, if you want to use the view state functionality.
  */
-class BaseViewModel<VIEW_STATE>(initialState: VIEW_STATE) : ViewModel() {
+open class BaseViewModel<VIEW_STATE>(initialState: VIEW_STATE) : ViewModel() {
 
     val viewState = NonNullMutableLiveData(initialState)
 
