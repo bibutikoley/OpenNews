@@ -33,7 +33,7 @@ class NewsListingFragment : BaseFragment<FragmentNewsListingBinding>() {
         val material = MaterialAlertDialogBuilder(requireContext())
             .setTitle("Hello")
             .setMessage("Check the dialog")
-            .setCancelable(false)
+            //.setCancelable(false)
         material.show()
 
     }
