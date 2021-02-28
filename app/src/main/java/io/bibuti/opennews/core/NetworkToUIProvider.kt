@@ -7,6 +7,7 @@ import retrofit2.Response
 import timber.log.Timber
 import java.io.EOFException
 import java.net.HttpURLConnection
+import java.lang.IllegalStateException
 import java.net.SocketTimeoutException
 
 /**
