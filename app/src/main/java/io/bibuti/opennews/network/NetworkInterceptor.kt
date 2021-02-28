@@ -16,7 +16,6 @@ class NetworkInterceptor : Interceptor {
             .addQueryParameter("apiKey", "91f1b3852819453185cd59eb6609d2b5")
             .build()
         val modifiedRequest = originalRequest.newBuilder()
-            .addHeader("Authorization", "")
             .addHeader("User-Agent", "android")
             .url(addQueryParameter)
             .build()

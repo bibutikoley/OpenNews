@@ -1,6 +1,7 @@
 package io.bibuti.opennews.di
 
 import android.app.Application
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -38,18 +39,26 @@ object AppModule {
     @Singleton
     @Provides
     fun provideDataRequestInterceptor() = HttpLoggingInterceptor { message ->
-        Timber.d(message)
+        Timber.i(message)
     }.apply { level = HttpLoggingInterceptor.Level.BODY }
+
+    @Singleton
+    @Provides
+    fun providesChuckerInterceptor(application: Application) = ChuckerInterceptor.Builder(application)
+        .alwaysReadResponseBody(true)
+        .build()
 
     @Singleton
     @Provides
     fun provideSupportClient(
         networkInterceptor: NetworkInterceptor,
-        dataRequestInterceptor: HttpLoggingInterceptor
+        dataRequestInterceptor: HttpLoggingInterceptor,
+        chuckerInterceptor: ChuckerInterceptor
     ) = OkHttpClient()
         .newBuilder()
         .addInterceptor(networkInterceptor)
         .addInterceptor(dataRequestInterceptor)
+        .addInterceptor(chuckerInterceptor)
         .connectTimeout(1, TimeUnit.MINUTES)
         .callTimeout(1, TimeUnit.MINUTES)
         .build()
@@ -78,7 +87,6 @@ object AppModule {
     @Provides
     fun provideNetworkInstance(networkBuilder: Retrofit): NetworkEndpoints = networkBuilder
         .create(NetworkEndpoints::class.java)
-
 
     //Local db..
     @Singleton

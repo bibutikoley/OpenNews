@@ -1,22 +1,22 @@
 object Versions {
     //project level..
-    const val kotlin = "1.4.21"
-    const val gradle = "4.1.1"
+    const val kotlin = "1.4.31"
+    const val gradle = "4.1.2"
 
     //app level..
-    const val materialDesign = "1.2.1"
+    const val materialDesign = "1.3.0"
     const val coreKtx = "1.3.2"
     const val appCompact = "1.2.0"
     const val constraintLayout = "2.0.4"
-    const val desugaring = "1.1.1"
+    const val desugaring = "1.1.5"
     const val timber = "4.7.1"
-    const val fragmentKtx = "2.3.2"
-    const val lifecycleKtx = "2.2.0"
+    const val fragmentKtx = "2.3.3"
+    const val lifecycleKtx = "2.3.0"
     const val retrofit = "2.9.0"
     const val interceptor = "4.9.0"
     const val coroutines = "1.4.2"
     const val room = "2.2.6"
-    const val glide = "4.11.0"
+    const val glide = "4.12.0"
 }
 
 

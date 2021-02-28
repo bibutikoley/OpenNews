@@ -5,7 +5,10 @@ import androidx.annotation.WorkerThread
 import kotlinx.coroutines.flow.*
 import retrofit2.Response
 import timber.log.Timber
+import java.io.EOFException
 import java.lang.IllegalStateException
+import java.net.HttpURLConnection
+import java.net.SocketTimeoutException
 
 /**
  * This is abstract wrapper for saving network responses directly to DB (with DAOs)
@@ -33,7 +36,12 @@ abstract class NetworkToDBProvider<RESULT> {
             saveRemoteData(responseBody)
         } else {
             // Something went wrong! Emit Error state.
-            emit(State.ResponseError(message = apiResponse.message(), errorBody = errorBody))
+            // Something went wrong! Emit Error state.
+            when (apiResponse.code()) {
+                HttpURLConnection.HTTP_UNAUTHORIZED -> emit(State.ResponseError(message = "Incorrect credentials", errorBody = errorBody))
+                HttpURLConnection.HTTP_BAD_GATEWAY -> emit(State.ResponseError(message = "Server is down", errorBody = errorBody))
+                else -> emit(State.ResponseError(message = apiResponse.message(), errorBody = errorBody))
+            }
         }
 
         // Retrieve posts from persistence storage and emit
@@ -45,15 +53,11 @@ abstract class NetworkToDBProvider<RESULT> {
     }.catch { e ->
         // Exception occurred! Emit error
         Timber.e("Error -> $e")
-        if (e is IllegalStateException) {
-            emit(
-                State.ExceptionError(
-                    errorMessage = "Ohh Crap!, Error with Data Parsing",
-                    throwable = e
-                )
-            )
-        } else {
-            emit(State.ExceptionError("Network error! Can't get latest data.", throwable = e))
+        when (e) {
+            is IllegalStateException -> emit(State.ExceptionError(errorMessage = "Oops! Error with data parsing", throwable = e))
+            is SocketTimeoutException -> emit(State.ExceptionError(errorMessage = "Request Timeout! try again later", throwable = e))
+            is EOFException -> emit(State.ExceptionError(errorMessage = "Response with no body", throwable = e))
+            else -> emit(State.ExceptionError(errorMessage = "Some Error Occurred! Can't get the latest data", throwable = e))
         }
         e.printStackTrace()
     }

@@ -1,7 +1,7 @@
 import java.io.FileInputStream
-import java.util.*
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 plugins {
     id("com.android.application")
@@ -117,10 +117,15 @@ dependencies {
     implementation(Glide.lib)
 
     //dependency injection..
-    implementation("com.google.dagger:hilt-android:2.30.1-alpha")
-    kapt("com.google.dagger:hilt-android-compiler:2.30.1-alpha")
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02")
-    kapt("androidx.hilt:hilt-compiler:1.0.0-alpha02")
+    val hiltVersion = "2.33-beta"
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+    kapt("androidx.hilt:hilt-compiler:1.0.0-alpha03")
+
+    //chucker intercepter
+    debugImplementation("com.github.chuckerteam.chucker:library:3.4.0")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:3.4.0")
 
 
     //testing..
