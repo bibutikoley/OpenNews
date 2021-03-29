@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase
  * Defining the App Database.
  */
 @Database(entities = [SingleNewsItem::class], version = 1)
-abstract class AppDB: RoomDatabase() {
+abstract class AppDB : RoomDatabase() {
 
     /**
      * Declare all the DAOs here..

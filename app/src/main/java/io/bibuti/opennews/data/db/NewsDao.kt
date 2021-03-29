@@ -13,7 +13,7 @@ interface NewsDao {
     suspend fun saveNews(news: List<SingleNewsItem>)
 
     @Query("select * from news_table order by publishedAt asc")
-    fun fetchNews() : Flow<List<SingleNewsItem>>
+    fun fetchNews(): Flow<List<SingleNewsItem>>
 
 }
 

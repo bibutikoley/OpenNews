@@ -16,6 +16,7 @@ object Versions {
     const val interceptor = "4.9.0"
     const val coroutines = "1.4.2"
     const val room = "2.2.6"
+    const val paging = "2.1.2"
     const val glide = "4.12.0"
 }
 
@@ -72,6 +73,10 @@ object Room {
     const val compiler = "androidx.room:room-compiler:${Versions.room}"
     const val ktx = "androidx.room:room-ktx:${Versions.room}"
     const val runtime = "androidx.room:room-runtime:${Versions.room}"
+}
+
+object Paging {
+    const val runtimeKtx = "androidx.paging:paging-runtime-ktx:${Versions.paging}"
 }
 
 object Glide {

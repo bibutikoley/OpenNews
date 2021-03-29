@@ -1,5 +1,6 @@
 package io.bibuti.opennews.network
 
+import io.bibuti.opennews.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.util.*
@@ -13,7 +14,7 @@ class NetworkInterceptor : Interceptor {
         val originalRequest = chain.request()
         val addQueryParameter = originalRequest.url.newBuilder()
             .addQueryParameter("country", Locale.getDefault().country.toString())
-            .addQueryParameter("apiKey", "91f1b3852819453185cd59eb6609d2b5")
+            .addQueryParameter("apiKey", BuildConfig.NEWS_API_KEY)
             .build()
         val modifiedRequest = originalRequest.newBuilder()
             .addHeader("User-Agent", "android")

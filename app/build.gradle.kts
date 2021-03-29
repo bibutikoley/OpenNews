@@ -55,9 +55,19 @@ android {
     productFlavors {
         create("staging") {
             buildConfigField("String", "BASE_URL", properties["STAGING_BASE_URL"].toString())
+            buildConfigField(
+                "String",
+                "NEWS_API_KEY",
+                properties["STAGING_NEWS_API_KEY"].toString()
+            )
         }
         create("production") {
             buildConfigField("String", "BASE_URL", properties["PRODUCTION_BASE_URL"].toString())
+            buildConfigField(
+                "String",
+                "NEWS_API_KEY",
+                properties["PRODUCTION_NEWS_API_KEY"].toString()
+            )
         }
     }
 
@@ -113,6 +123,9 @@ dependencies {
     kapt(Room.compiler)
     implementation(Room.ktx)
 
+    //paging..
+    implementation(Paging.runtimeKtx)
+
     //glide..
     implementation(Glide.lib)
 
@@ -121,7 +134,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
-    kapt("androidx.hilt:hilt-compiler:1.0.0-alpha03")
+    kapt("androidx.hilt:hilt-compiler:1.0.0-beta01")
 
     //chucker intercepter
     debugImplementation("com.github.chuckerteam.chucker:library:3.4.0")

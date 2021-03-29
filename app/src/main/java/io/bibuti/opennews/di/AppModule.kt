@@ -44,7 +44,9 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providesChuckerInterceptor(application: Application) = ChuckerInterceptor.Builder(application)
+    fun providesChuckerInterceptor(
+        application: Application
+    ) = ChuckerInterceptor.Builder(application)
         .alwaysReadResponseBody(true)
         .build()
 
@@ -69,7 +71,9 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideGsonFactory(gson: Gson?): GsonConverterFactory = GsonConverterFactory.create(gson ?: Gson())
+    fun provideGsonFactory(
+        gson: Gson?
+    ): GsonConverterFactory = GsonConverterFactory.create(gson ?: Gson())
 
     @Singleton
     @Provides
@@ -85,8 +89,9 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideNetworkInstance(networkBuilder: Retrofit): NetworkEndpoints = networkBuilder
-        .create(NetworkEndpoints::class.java)
+    fun provideNetworkInstance(
+        networkBuilder: Retrofit
+    ): NetworkEndpoints = networkBuilder.create(NetworkEndpoints::class.java)
 
     //Local db..
     @Singleton

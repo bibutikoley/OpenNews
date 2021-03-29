@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
  */
 object NetworkClient {
 
-    private const val BASE_URL = "https://community-open-weather-map.p.rapidapi.com/"
+    private const val BASE_URL = ""
 
     fun instance(): NetworkEndpoints {
         return Retrofit.Builder()
@@ -32,7 +32,7 @@ object NetworkClient {
     private val networkInterceptor = Interceptor { chain ->
         val request = chain.request().newBuilder()
             .addHeader("Authorization", "")
-            .addHeader("x-rapidapi-key", "ee480120cemsh94dec5bedad4bb3p1cda09jsnac0cd556838c")
+            .addHeader("x-rapidapi-key", "")
             .addHeader("User-Agent", "android")
             .build()
         chain.proceed(request)

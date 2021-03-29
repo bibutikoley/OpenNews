@@ -4,25 +4,15 @@ import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import kotlin.math.roundToInt
 
 fun <T> LifecycleOwner.observe(liveData: LiveData<T>, observer: Observer<T>) {
     liveData.removeObservers(this)
     liveData.observe(this, observer)
-}
-
-inline fun <T> LiveData<T>.observeOnce(
-    lifecycleOwner: LifecycleOwner,
-    crossinline observer: (T) -> Unit
-) {
-    observe(lifecycleOwner, object : Observer<T> {
-        override fun onChanged(t: T) {
-            observer.invoke(t)
-            removeObserver(this)
-        }
-    })
 }
 
 fun Boolean?.isTrue(): Boolean {
@@ -36,5 +26,33 @@ fun Boolean.toggle(): Boolean {
 fun Context?.hideKeyboard(view: View) {
     (this?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).apply {
         hideSoftInputFromWindow(view.windowToken, 0)
+    }
+}
+
+fun Fragment.hideKeyboard() {
+    view?.let {
+        activity?.hideKeyboard(it)
+    }
+}
+
+fun Activity.hideKeyboard() {
+    currentFocus?.let {
+        hideKeyboard(it)
+    }
+}
+
+fun Any?.isNull(): Boolean {
+    return this == null
+}
+
+fun Any?.isNotNull(): Boolean {
+    return this != null
+}
+
+fun Double.adaptiveNumber(upto: Int = 2): String {
+    return if (this.rem(1).equals(0.0)) {
+        this.roundToInt().toString()
+    } else {
+        "%.${upto}f".format(this)
     }
 }
