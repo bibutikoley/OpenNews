@@ -1,6 +1,7 @@
 package io.bibuti.opennews.core
 
 import com.google.gson.GsonBuilder
+import com.google.gson.JsonParseException
 import com.google.gson.annotations.SerializedName
 import okhttp3.ResponseBody
 
@@ -20,7 +21,9 @@ fun parseError(errorBody: ResponseBody?): String {
                 GsonBuilder().serializeNulls().create().fromJson(it, ErrorBodyResponse::class.java)
             "${data.code} - ${data.message}"
         }
+    } catch (e: JsonParseException) {
+        "Unable to parse the error."
     } catch (e: Throwable) {
-        "Something went wrong with that request"
+        "Something went wrong with that request."
     }
 }
