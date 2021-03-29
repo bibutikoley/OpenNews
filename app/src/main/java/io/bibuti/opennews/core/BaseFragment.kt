@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -11,12 +12,8 @@ import androidx.fragment.app.Fragment
 /**
  * try to initialize all the fragments from this class.
  */
-abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
-
-    /**
-     *  Can initialize/declare anything here which is to used across all the child fragments
-     */
-    abstract fun setFragmentView(): Int
+abstract class BaseFragment<T : ViewDataBinding> constructor(@LayoutRes private val layoutResId: Int) :
+    Fragment() {
 
     lateinit var binding: T
 
@@ -25,7 +22,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, setFragmentView(), container, false)
+        binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
         return binding.root
     }
 

@@ -88,46 +88,53 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 
 dependencies {
 
-    implementation(Jetbrains.kotlinStdLib)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
-    implementation(androidX.coreKtx)
-    implementation(androidX.appcompat)
-    implementation(androidX.materialDesign)
-    implementation(androidX.constraintLayout)
+    implementation("androidx.core:core-ktx:1.3.2")
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("com.google.android.material:material:1.3.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+
 
     //de-sugaring for using latest java 8 features on older devices
-    coreLibraryDesugaring(Desugaring.coreLibraryDesugaring)
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     //logging with timber
-    implementation(Timber.logging)
+    implementation("com.jakewharton.timber:timber:4.7.1")
 
     //navigation..
-    implementation(NavigationKtx.navigationFragmentKtx)
-    implementation(NavigationKtx.navigationUIKtx)
+    val fragmentKtx = "2.3.3"
+    implementation("androidx.navigation:navigation-fragment-ktx:$fragmentKtx")
+    implementation("androidx.navigation:navigation-ui-ktx:$fragmentKtx")
 
     //lifecycle..
-    implementation(LifecycleKtx.liveDataKtx)
-    implementation(LifecycleKtx.viewModelKtx)
+    val lifecycleKtx = "2.3.0"
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleKtx")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleKtx")
 
     //coroutines..
-    implementation(Coroutines.core)
-    implementation(Coroutines.android)
+    val coroutines = "1.4.2"
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines")
 
     //retrofit..
-    implementation(Retrofit.retrofit)
-    implementation(Retrofit.gsonRetrofitConverter)
-    implementation(Retrofit.interceptor)
+    val retrofit = "2.9.0"
+    implementation("com.squareup.retrofit2:retrofit:$retrofit")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofit")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
     //database..
-    implementation(Room.runtime)
-    kapt(Room.compiler)
-    implementation(Room.ktx)
+    val room = "2.2.6"
+    implementation("androidx.room:room-runtime:$room")
+    kapt("androidx.room:room-compiler:$room")
+    implementation("androidx.room:room-ktx:$room")
 
     //paging..
-    implementation(Paging.runtimeKtx)
+    implementation("androidx.paging:paging-runtime-ktx:2.1.2")
 
     //glide..
-    implementation(Glide.lib)
+    implementation("com.github.bumptech.glide:glide:4.12.0")
 
     //dependency injection..
     val hiltVersion = "2.33-beta"
@@ -137,14 +144,15 @@ dependencies {
     kapt("androidx.hilt:hilt-compiler:1.0.0-beta01")
 
     //chucker intercepter
-    debugImplementation("com.github.chuckerteam.chucker:library:3.4.0")
-    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:3.4.0")
+    val chucker = "3.4.0"
+    debugImplementation("com.github.chuckerteam.chucker:library:$chucker")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:$chucker")
 
 
     //testing..
-    testImplementation(Testing.jUnit)
-    androidTestImplementation(Testing.extJUnit)
-    androidTestImplementation(Testing.espresso)
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.2")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
 
 }
 
