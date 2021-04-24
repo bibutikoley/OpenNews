@@ -53,7 +53,7 @@ android {
 
     flavorDimensions("default")
     productFlavors {
-        create("staging") {
+        create("dev") { //also know as staging/internal testing, etc
             buildConfigField("String", "BASE_URL", properties["STAGING_BASE_URL"].toString())
             buildConfigField(
                 "String",
@@ -137,11 +137,9 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.12.0")
 
     //dependency injection..
-    val hiltVersion = "2.33-beta"
+    val hiltVersion = "2.35"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
-    kapt("androidx.hilt:hilt-compiler:1.0.0-beta01")
 
     //chucker intercepter
     val chucker = "3.4.0"

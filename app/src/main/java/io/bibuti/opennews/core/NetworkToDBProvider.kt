@@ -39,18 +39,21 @@ abstract class NetworkToDBProvider<RESULT> {
             when (apiResponse.code()) {
                 HttpURLConnection.HTTP_UNAUTHORIZED -> emit(
                     State.ResponseError(
+                        errorCode = apiResponse.code(),
                         message = "Incorrect credentials",
                         errorBody = errorBody
                     )
                 )
                 HttpURLConnection.HTTP_BAD_GATEWAY -> emit(
                     State.ResponseError(
+                        errorCode = apiResponse.code(),
                         message = "Server is down",
                         errorBody = errorBody
                     )
                 )
                 else -> emit(
                     State.ResponseError(
+                        errorCode = apiResponse.code(),
                         message = parseError(errorBody), //parse your error here and show custom message
                         errorBody = errorBody
                     )

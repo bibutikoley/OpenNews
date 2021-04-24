@@ -10,4 +10,5 @@
         android:name="io.bibuti.opennews.ui.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash" />
+
 </navigation>
