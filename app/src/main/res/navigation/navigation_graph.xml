@@ -7,8 +7,17 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="io.bibuti.opennews.ui.SplashFragment"
+        android:name="io.bibuti.opennews.ui.onboarding.SplashFragment"
         android:label="SplashFragment"
-        tools:layout="@layout/fragment_splash" />
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_allNewsFragment"
+            app:destination="@id/allNewsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allNewsFragment"
+        android:name="io.bibuti.opennews.ui.home.AllNewsFragment"
+        android:label="AllNewsFragment"
+        tools:layout="@layout/fragment_all_news" />
 
 </navigation>

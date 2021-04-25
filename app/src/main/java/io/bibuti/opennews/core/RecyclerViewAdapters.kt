@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.databinding.library.baseAdapters.BR
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -21,8 +22,9 @@ open class ItemViewHolder<B : ViewDataBinding>(
     private val listener: ItemClickListener? = null
 ) : RecyclerView.ViewHolder(binding.root) {
 
+    //Uncomment this after creating XML files
     fun bindHolder(item: Any) {
-//        binding.setVariable(BR.data, item)
+        binding.setVariable(BR.data, item)
 //        binding.setVariable(BR.position, adapterPosition)
 //        listener?.let {
 //            binding.setVariable(BR.callback, it)

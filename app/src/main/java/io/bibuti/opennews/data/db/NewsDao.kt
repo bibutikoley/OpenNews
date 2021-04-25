@@ -1,7 +1,7 @@
 package io.bibuti.opennews.data.db
 
+import androidx.paging.DataSource
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
 
 /**
  * Defining the DAOs for performing DB operations
@@ -13,7 +13,7 @@ interface NewsDao {
     suspend fun saveNews(news: List<SingleNewsItem>)
 
     @Query("select * from news_table order by publishedAt asc")
-    fun fetchNews(): Flow<List<SingleNewsItem>>
+    fun fetchNewsDataSource(): DataSource.Factory<Int, SingleNewsItem>
 
 }
 

@@ -39,5 +39,5 @@ class NewsRepository @Inject constructor(
         }.asFlow()
     }
 
-    fun getNewsFromDB() = appDB.newsDao().fetchNews()
+    fun getNewsFromDB() = appDB.newsDao().fetchNewsDataSource()
 }

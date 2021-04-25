@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="io.bibuti.opennews.data.db.SingleNewsItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/news_post_IV"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/news_image"
+            android:scaleType="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImage="@{data.newsImageUrl}"
+            app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/category_TV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{data.authorName}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@color/teal_700"
+            app:layout_constraintEnd_toStartOf="@+id/news_post_IV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Sports" />
+
+        <TextView
+            android:id="@+id/category_headline_TV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{data.newsTitle}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Tooltip"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/category_TV"
+            app:layout_constraintStart_toStartOf="@+id/category_TV"
+            app:layout_constraintTop_toBottomOf="@+id/category_TV"
+            tools:text="@string/lorem_ipsum" />
+
+        <TextView
+            android:id="@+id/date_and_time_TV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@android:color/darker_gray"
+            app:desiredFormat="@{`dd MMM, yyyy`}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/category_headline_TV"
+            app:layout_constraintStart_toStartOf="@+id/category_headline_TV"
+            app:layout_constraintTop_toBottomOf="@+id/category_headline_TV"
+            app:utcTime="@{data.publishedAt}"
+            tools:text="20 Jan, 2021  ●  4 min read" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -4,10 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import kotlin.math.roundToInt
 
 fun <T> LifecycleOwner.observe(liveData: LiveData<T>, observer: Observer<T>) {
@@ -55,4 +57,10 @@ fun Double.adaptiveNumber(upto: Int = 2): String {
     } else {
         "%.${upto}f".format(this)
     }
+}
+
+fun ImageView.load(url: String) {
+    Glide.with(this)
+        .load(url)
+        .into(this)
 }
