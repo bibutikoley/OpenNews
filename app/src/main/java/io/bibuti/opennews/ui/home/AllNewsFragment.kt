@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.paging.PagedList
+import androidx.paging.PagingData
 import io.bibuti.opennews.R
 import io.bibuti.opennews.core.BaseFragment
 import io.bibuti.opennews.core.SingleEventPagedListAdapter
@@ -23,10 +23,7 @@ class AllNewsFragment : BaseFragment<FragmentAllNewsBinding>(
 
     private val newsAdapter = SingleEventPagedListAdapter<SingleNewsItem, ItemAllNewsBinding>(
         diffUtil = newsDiffUtil,
-        layoutResId = R.layout.item_all_news,
-        itemClickListener = { _ ->
-
-        }
+        layoutResId = R.layout.item_all_news
     )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +35,7 @@ class AllNewsFragment : BaseFragment<FragmentAllNewsBinding>(
 
     }
 
-    private val newsObserver: Observer<PagedList<SingleNewsItem>> = Observer {
-        newsAdapter.submitList(it)
+    private val newsObserver: Observer<PagingData<SingleNewsItem>> = Observer {
+        newsAdapter.submitData(lifecycle, it)
     }
 }

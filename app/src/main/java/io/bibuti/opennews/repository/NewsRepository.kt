@@ -1,5 +1,7 @@
 package io.bibuti.opennews.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import io.bibuti.opennews.core.NetworkToUIProvider
 import io.bibuti.opennews.core.State
 import io.bibuti.opennews.data.apiresponses.NewsResponse
@@ -39,5 +41,6 @@ class NewsRepository @Inject constructor(
         }.asFlow()
     }
 
-    fun getNewsFromDB() = appDB.newsDao().fetchNewsDataSource()
+    fun getNewsFromDB() =
+        Pager(config = PagingConfig(pageSize = 20)) { appDB.newsDao().fetchNewsDataSource() }
 }

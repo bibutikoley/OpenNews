@@ -2,7 +2,7 @@ package io.bibuti.opennews.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.toLiveData
+import androidx.paging.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.bibuti.opennews.core.State
 import io.bibuti.opennews.repository.NewsRepository
@@ -21,7 +21,7 @@ class NewsViewModel @Inject constructor(
         fetchNews()
     }
 
-    val newsPagedLiveData = newsRepository.getNewsFromDB().toLiveData(50)
+    val newsPagedLiveData = newsRepository.getNewsFromDB().liveData
 
     private fun fetchNews() {
         viewModelScope.launch {

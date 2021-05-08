@@ -7,7 +7,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
-import androidx.paging.PagedListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +25,7 @@ open class ItemViewHolder<B : ViewDataBinding>(
     //Uncomment this after creating XML files
     fun bindHolder(item: Any) {
         binding.setVariable(BR.data, item)
-//        binding.setVariable(BR.position, adapterPosition)
+//        binding.setVariable(BR.position, bindingAdapterPosition)
 //        listener?.let {
 //            binding.setVariable(BR.callback, it)
 //        }
@@ -37,7 +37,7 @@ open class ItemViewHolder<B : ViewDataBinding>(
 class MultiEventListAdapter<T : Any, B : ViewDataBinding>(
     diffUtil: DiffUtil.ItemCallback<T>,
     @LayoutRes private val layoutResId: Int,
-    private val itemClickListener: ItemClickListener,
+    private val itemClickListener: ItemClickListener? = null,
 ) : ListAdapter<T, ItemViewHolder<B>>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder<B> {
@@ -61,8 +61,8 @@ class MultiEventListAdapter<T : Any, B : ViewDataBinding>(
 class MultiEventPagedListAdapter<T : Any, B : ViewDataBinding>(
     diffUtil: DiffUtil.ItemCallback<T>,
     @LayoutRes private val layoutResId: Int,
-    private val itemClickListener: ItemClickListener,
-) : PagedListAdapter<T, ItemViewHolder<B>>(diffUtil) {
+    private val itemClickListener: ItemClickListener? = null,
+) : PagingDataAdapter<T, ItemViewHolder<B>>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder<B> {
         return ItemViewHolder(
@@ -89,8 +89,8 @@ class MultiEventPagedListAdapter<T : Any, B : ViewDataBinding>(
 class SingleEventPagedListAdapter<T : Any, B : ViewDataBinding>(
     diffUtil: DiffUtil.ItemCallback<T>,
     @LayoutRes private val layoutResId: Int,
-    private val itemClickListener: (T) -> Unit,
-) : PagedListAdapter<T, ItemViewHolder<B>>(diffUtil) {
+    private val itemClickListener: (T) -> Unit = {},
+) : PagingDataAdapter<T, ItemViewHolder<B>>(diffUtil) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -111,7 +111,7 @@ class SingleEventPagedListAdapter<T : Any, B : ViewDataBinding>(
             holder.bindHolder(this)
             holder.apply {
                 binding.root.setOnClickListener {
-                    getItem(adapterPosition)?.let {
+                    getItem(bindingAdapterPosition)?.let {
                         itemClickListener.invoke(it)
                     }
                 }
@@ -126,7 +126,7 @@ class SingleEventPagedListAdapter<T : Any, B : ViewDataBinding>(
 class SingleEventListAdapter<T : Any, B : ViewDataBinding>(
     diffUtil: DiffUtil.ItemCallback<T>,
     @LayoutRes private val layoutResId: Int,
-    private val itemClickListener: (T) -> Unit,
+    private val itemClickListener: (T) -> Unit = {},
 ) : ListAdapter<T, ItemViewHolder<B>>(diffUtil) {
 
     override fun onCreateViewHolder(
@@ -148,7 +148,7 @@ class SingleEventListAdapter<T : Any, B : ViewDataBinding>(
             holder.bindHolder(this)
             holder.apply {
                 binding.root.setOnClickListener {
-                    getItem(adapterPosition)?.let {
+                    getItem(bindingAdapterPosition)?.let {
                         itemClickListener.invoke(it)
                     }
                 }

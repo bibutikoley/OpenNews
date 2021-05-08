@@ -104,14 +104,12 @@ dependencies {
     implementation("com.jakewharton.timber:timber:4.7.1")
 
     //navigation..
-    val fragmentKtx = "2.3.3"
-    implementation("androidx.navigation:navigation-fragment-ktx:$fragmentKtx")
-    implementation("androidx.navigation:navigation-ui-ktx:$fragmentKtx")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
 
     //lifecycle..
-    val lifecycleKtx = "2.3.0"
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleKtx")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleKtx")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
 
     //coroutines..
     val coroutines = "1.4.2"
@@ -125,13 +123,12 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
     //database..
-    val room = "2.2.6"
-    implementation("androidx.room:room-runtime:$room")
-    kapt("androidx.room:room-compiler:$room")
-    implementation("androidx.room:room-ktx:$room")
+    implementation("androidx.room:room-runtime:2.3.0")
+    kapt("androidx.room:room-compiler:2.3.0")
+    implementation("androidx.room:room-ktx:2.3.0")
 
     //paging..
-    implementation("androidx.paging:paging-runtime-ktx:2.1.2")
+    implementation("androidx.paging:paging-runtime-ktx:3.0.0")
 
     //glide..
     implementation("com.github.bumptech.glide:glide:4.12.0")

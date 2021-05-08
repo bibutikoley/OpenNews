@@ -1,6 +1,6 @@
 package io.bibuti.opennews.data.db
 
-import androidx.paging.DataSource
+import androidx.paging.PagingSource
 import androidx.room.*
 
 /**
@@ -13,7 +13,7 @@ interface NewsDao {
     suspend fun saveNews(news: List<SingleNewsItem>)
 
     @Query("select * from news_table order by publishedAt asc")
-    fun fetchNewsDataSource(): DataSource.Factory<Int, SingleNewsItem>
+    fun fetchNewsDataSource(): PagingSource<Int, SingleNewsItem>
 
 }
 
